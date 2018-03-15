@@ -1,0 +1,459 @@
+/************************************************************************************
+RESET
+*************************************************************************************/
+html, body, address, blockquote, div, dl, form, h1, h2, h3, h4, h5, h6, ol, p, pre, table, ul,
+dd, dt, li, tbody, td, tfoot, th, thead, tr, button, del, ins, map, object,
+a, abbr, acronym, b, bdo, big, br, cite, code, dfn, em, i, img, kbd, q, samp, small, span,
+strong, sub, sup, tt, var, legend, fieldset {
+    margin: 0;
+    padding: 0;
+}
+
+/* set html5 elements to block */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+/* set image max width to 100% */
+/*
+    height
+    line-height
+    max-height
+    max-width
+    min-height      属性设置元素的最小高度
+    min-width       属性设置元素的最小宽度
+    width
+*/
+img {
+    max-width: 100%;/* 设置元素的最大宽度,元素可以比指定值窄，但不能比其宽 */
+    height: auto;/* 定义元素内容区的高度,在内容区外面可以增加内边距,边框,外边距 */
+    width: auto\9; /*  定义元素内容区的宽度,在内容区外面可以增加内边距,边框和外边距 */
+}
+
+
+/************************************************************************************
+GENERAL STYLING
+*************************************************************************************/
+body {
+    /*
+        background-color
+        background-image
+        background-repeat       repeat(默认, 水平和垂直方向重复), repeat-x, repeat-y, no-repeat, inherit
+        background-position     top, center, bottom   |  left, center, right
+        background-attachment   scroll, fixed, inherit
+    */
+    background: #5EADCC url(../images/body-bg.jpg) no-repeat center top fixed;
+    /*
+        font-family
+        font-size               em的值相对于父元素的字体大小改变,如果一个元素的font-size为16px,那么对于该元素,1em=16px
+        font-style              normal, italic, oblique
+        font-variant            normal, small-caps(小型大写字母的字体), inherit
+        font-weight             normal, bold, bolder, lighter, 100~900(400等同于normal, 700等同于bold), inherit
+    */
+    font: .81em/150% Arial, Helvetica, sans-serif;
+    color: #666;
+}
+a {
+    color: #026acb;
+    text-decoration: none;/* 定义添加到文本的修饰  none, underline, overline, line-through, blink, inherit    */
+    outline: none;/* （轮廓）是绘制于元素周围的一条线，位于边框边缘的外围，可起到突出元素的作用  outline-color, outline-style, outline-width */
+}
+a:hover {
+    text-decoration: underline;
+}
+p {
+    margin: 0 0 1.2em;/* 上外边距0, 左右外边距0, 下外边距1.2em */
+    padding: 0;/* 所有四个内边距都是0 */
+}
+
+/* list */
+ul, ol {
+    margin: 1em 0 1.4em 24px;
+    padding: 0;
+    line-height: 140%;/* 设置行间的距离（行高） */
+}
+li {
+    margin: 0 0 .5em 0;
+    padding: 0;
+}
+
+/* headings */
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.4em;
+    margin: 20px 0 .4em;
+    color: #000;
+}
+h1 {
+    font-size: 2em;
+}
+h2 {
+    font-size: 1.6em;
+}
+h3 {
+    font-size: 1.4em;
+}
+h4 {
+    font-size: 1.2em;
+}
+h5 {
+    font-size: 1.1em;
+}
+h6 {
+    font-size: 1em;
+}
+
+/* reset webkit search input styles */
+/*
+    属性选择器:
+    a[href][title]          选择同时有href和title属性的a元素
+    input[type="search"]    选择type值为search的input元素(必须要去属性值完全匹配)
+    input[type~="search"]   选择type值包含search这个单词的input元素(属性值包含search这个单词)
+    input[type^="search"]   选择type属性值以search开头的input元素
+    input[type$="search"]   选择type属性值以search结尾的input元素
+    input[type*="search"]   选择type属性值包含子串search的input元素(注意与input[type~="search"]区分)
+    input[type|="search"]   用于选取带有以指定值开头的属性值的元素，该值必须是整个单词
+*/
+input[type=search] {
+    -webkit-appearance: none;/* -webit-appearance是用来改变按钮和其他控件的外观,使其外观类似于原生控件,设置值为none表示移除原生控件样式 */
+    outline: none;
+}
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button {
+    /* 用于规定元素应该生成的框的类型
+        none: 此元素不会被显示
+        block: 此元素将显示为块级元素,此元素前后会带有换行符
+        inline: 默认, 此元素会被显示为内联元素,元素前后没有换行符
+        table: 此元素会作为块级表格来显示（类似 <table>），表格前后带有换行符。
+     */
+    display: none;
+}
+
+/************************************************************************************
+STRUCTURE
+*************************************************************************************/
+#pagewrap {
+    width:1024px;
+    margin: 0 auto;
+}
+/************************************************************************************
+HEADER
+*************************************************************************************/
+#header{
+    position: relative;
+    height: 160px;
+}
+
+#site-logo{
+    position: absolute;
+    top:10px;
+}
+
+#site-logo a{
+    font: bold 30px/100% Arial, Helvetica, sans-serif;
+    color:#fff;
+    text-decoration: none;
+}
+
+/*
+    overflow: 规定当内容溢出元素框时发生的事情
+        visible: 默认值。内容不会被修剪，会呈现在元素框之外。
+        hidden: 内容会被修剪，并且其余内容是不可见的。
+        scroll: 内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容。
+        auto: 如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。
+        inherit: 规定应该从父元素继承 overflow 属性的值。
+*/
+#site-description{
+    font: italic 100%/130% "Times New Roman", Times, serif;
+    color: #fff;
+    position: absolute;/*位置设置为 absolute 的元素，可定位于相对于包含它的元素的指定坐标。此元素的位置可通过 "left"、"top"、"right" 以及 "bottom" 属性来规定。*/
+    top: 55px;
+}
+
+/*
+    vertical-align: 设置元素的垂直对齐方式
+        baseline	默认。元素放置在父元素的基线上。
+        sub	        垂直对齐文本的下标。
+        super	    垂直对齐文本的上标
+        top	        把元素的顶端与行中最高元素的顶端对齐
+        text-top	把元素的顶端与父元素字体的顶端对齐
+        middle	    把此元素放置在父元素的中部。
+        bottom	    把元素的顶端与行中最低的元素的顶端对齐。
+        text-bottom	把元素的底端与父元素字体的底端对齐。
+*/
+#searchform{
+    position: absolute;
+    right:10px;
+    bottom:6px;
+    z-index: 100;/*属性设置元素的堆叠顺序。拥有更高堆叠顺序的元素总是会处于堆叠顺序较低的元素的前面   数字越大,越出现在最上层*/
+    width:160px;
+}
+
+
+#searchform #s {
+    width: 140px;
+    float: right;
+    background: #fff;
+    border: none;
+    padding: 6px 10px;
+    /* border-radius : 是一个简写的属性,用于设置四个border-*-radius属性
+            border-top-left-radius
+            border-top-right-radius
+            border-bottom-right-radius
+            border-bottom-left-radius
+    */
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+
+    /* box-shadow: 用于向框添加一个或多个阴影
+            box-shadow: h-shadow v-shadow blur spread color inset;
+            h-shadow	必需。水平阴影的位置。允许负值
+            v-shadow	必需。垂直阴影的位置。允许负值
+            blur	    可选。模糊距离
+            spread	    可选。阴影的尺寸
+            color	    可选。阴影的颜色。请参阅 CSS 颜色值
+            inset	    可选。将外部阴影 (outset) 改为内部阴影
+     */
+    -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.2);
+    -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,.2);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.2);
+
+    /* transition
+            transition-property: 用于规定应用过度效果的CSS属性名称,请始终设置transition-duration属性,否则时长为0,就不会产生效果
+                                 transition-property: width
+            transition-duration: 属性规定完成过渡效果需要花费的时间 transition-property: 2s
+     */
+    -webkit-transition: width .7s;
+    -moz-transition: width .7s;
+    transition: width .7s;
+}
+
+/************************************************************************************
+MAIN NAVIGATION
+*************************************************************************************/
+#main-nav{
+    width:100%;
+    background: #3985BF;
+    margin:0;
+    padding: 0;
+    position: absolute;
+    left:0;
+    bottom:0;
+    z-index: 100;
+    background: #3985BF url(../images/nav-bar-bg.png) repeat-x;
+    background: -webkit-gradient(linear, left top, left bottom, from(#b9b9b9), to(#3985BF));
+    background: -moz-linear-gradient(top,  #b9b9b9,  #3985BF);
+    background: linear-gradient(-90deg, #b9b9b9, #3985BF);
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    /* box shadow */
+    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 1px 1px rgba(0,0,0,.4);
+    -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 1px 1px rgba(0,0,0,.4);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 1px 1px rgba(0,0,0,.4);
+}
+
+
+/*
+    后代选择器: #main-nav li 表示作为#main-nav元素后代的任何 li 元素（所有后代元素,包含子元素或者孙元素）
+    子元素选择器: h1 > strong 表示选择作为 h1 元素子元素的所有 strong 元素（只有h1的子元素会被选择,其他层级的不会被选择）
+           示例: table.company td > p : 表示class为company的table元素的所有td后代子元素,选择作为这些td元素子元素的所有p元素
+    兄弟选择器: h1 + p 表示选择紧接在 h1 元素后出现的段落，h1 和 p 元素拥有共同的父元素
+           示例: html > body table + ul {margin-top:20px;}  选择紧接在 table 元素后出现的所有兄弟 ul 元素，
+                该 table 元素包含在一个 body 元素中，body 元素本身是 html 元素的子元素
+*/
+#main-nav li{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    float: left;
+    position: relative;
+}
+
+/*
+    伪类选择器:
+        2:子元素伪类:
+            p:first-child伪类用来选择某元素第一个子元素的所有p元素（其中的某元素可以嵌套多个层级）
+            p > i:first-child  p元素下的子元素,什么样的子元素呢?第一个子元素为i的子元素
+            p:first-child i    任何元素的第一个子元素为p元素的所有为i的子元素
+        3:lang伪类: q:lang(no){quotes:"~" "~"}  <q lang="no">段落中的引用</q> 输出的结果是:  ~段落中的引用~
+                :lang 类为带有值为 "no" 的 lang 属性的 q 元素定义引号的类型
+        4:input:focus 在元素获得焦点时向元素添加特殊的样式
+        5:p:nth-child(n) 任何元素下的子元素,什么样的子元素呢?第n个子元素为p的子元素,其中n可以是数字和关键字（even表示偶数,odd表示奇数）
+
+     伪元素:
+        1  p:first-line 用于向p元素文本的首行设置特殊样式
+        2  p:first-letter 用于向文本的首字母设置特殊的样式
+*/
+#main-nav li:first-child{
+    margin-left: 10px;
+}
+
+#main-nav a{
+    line-height: 100%;
+    font-weight: bold;
+    color: #fff;
+    display:block;
+    padding:14px 15px;
+    text-decoration: none;
+    /*
+        text-shadow可向文本应用阴影,能够规定水平阴影,垂直阴影,模糊距离,以及阴影的颜色
+        参数如下: h-shadow      水平阴影的位置,允许负值（负值向上,正值向下）
+                 v-shadow      垂直阴影的位置,允许负值
+                 blur          模糊的距离
+                 color         阴影的颜色
+    */
+    text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+}
+
+
+/*
+    伪类选择器:
+        1. 链接伪类:
+            a:link          表示未访问的链接
+            a:visited       表示已经访问的链接
+            a:hover         表示鼠标移动到连接上（必须被置于a:link, a:visited之后才能有效）
+            a:active        表示选定的链接（必须被置于a:hover之后才有效）
+*/
+#main-nav a:hover {
+    color: #fff;
+    background: #7779CC;
+    /* gradient */
+    background: -webkit-gradient(linear, left top, left bottom, from(#8756CC), to(#7779CC));
+    background: -moz-linear-gradient(top,  #8756CC,  #7779CC);
+    background: linear-gradient(-90deg,#8756CC, #7779CC);
+}
+
+
+/************************************************************************************
+CONTENT
+*************************************************************************************/
+#content{
+    background: #ffffff;
+    margin: 30px 0 30px;
+    padding: 20px 35px;
+    width: 600px;
+    float: left;
+    /* rounded corner */
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    /* box shadow */
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.4);
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,.4);
+    box-shadow: 0 1px 3px rgba(0,0,0,.4);
+}
+
+/* post */
+.post {
+    margin-bottom: 40px;
+}
+.post-title {
+    margin: 0 0 5px;
+    padding: 0;
+    font: bold 26px/120% Arial, Helvetica, sans-serif;
+}
+.post-title a {
+    text-decoration: none;
+    color: #000;
+}
+.post-meta {
+    margin: 0 0 10px;
+    font-size: 90%;
+}
+
+.post-image{
+    margin: 0 0 15px;
+}
+
+
+/************************************************************************************
+SIDEBAR
+*************************************************************************************/
+#sidebar{
+    width: 280px;
+    float: right;
+    margin: 30px 0 30px;
+}
+
+.widget{
+    background: #ffffff;
+    margin: 0 0 30px;
+    padding: 10px 20px;
+    /* rounded corner */
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    /* box shadow */
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.4);
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,.4);
+    box-shadow: 0 1px 3px rgba(0,0,0,.4);
+}
+
+
+.widgettitle{
+    margin: 0 0 5px;
+    padding:0;
+}
+
+/*
+    无序列表ul和有序列表ol
+    设置列表的样式: ul {list-style-type: circle} 以圆形图标显示  【none, disc, circle, square】
+    把图片设置为列表中的项目标记: ul {list-style-image: url("/i/arrow.gif")}
+    设置列表中列表项目标记的位置: ul {list-style-position: inside}   【inside, outside】
+    可以把上面三个属性定义在一个声明中: ul {list-style: square inside url('/i/eg_arrow.gif')}
+*/
+.widget ul{
+    margin: 0;
+    padding: 0;
+}
+
+.widget li{
+    margin:0;
+    padding: 6px 0;
+    list-style: none;
+    clear: both;
+    border-top:solid 1px #eeeeee;
+}
+
+/************************************************************************************
+FOOTER
+*************************************************************************************/
+#footer {
+    clear: both;
+    color: #ccc;
+    font-size: 85%;
+}
+#footer a {
+    color: #fff;
+}
+
+
+
+/************************************************************************************
+CLEARFIX
+*************************************************************************************/
+.clearfix:after { visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
+.clearfix { display: inline-block; }
+.clearfix { display: block; zoom: 1; }
+
+
+
+/*a:link,a:visited*/
+/*{*/
+    /*display:block;*/
+    /*font-weight:bold;*/
+    /*font-size:14px;*/
+    /*font-family:Verdana, Arial, Helvetica, sans-serif;*/
+    /*color:#FFFFFF;*/
+    /*background-color:#98bf21;*/
+    /*width:120px;*/
+    /*text-align:center;*/
+    /*padding:4px;*/
+    /*text-decoration:none;*/
+/*}*/
+
+/*a:hover,a:active*/
+/*{*/
+    /*background-color:#7A991A;*/
+/*}*/
